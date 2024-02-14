@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="root">
+        <h2>Custom EVent</h2>
+    </div>
+
+    <button class="btn">Test</button>
+
+
+    <script>
+
+
+        // CustomEvent
+        function highlight(ele) {
+            const bgColor = "yellow"
+            ele.style.backgroundColor = bgColor;
+
+            // create event
+            let event = new CustomEvent('highlight', { detail: { backgroundColor: bgColor } });
+            ele.dispatchEvent(event);
+        }
+
+        let div = document.querySelector('#root');
+
+        function addBorder(ele) {
+            ele.style.border = "1px solid red";
+        }
+
+        div.addEventListener('highlight', function (e) {
+            addBorder(this);
+            console.log(e);
+
+        })
+        highlight(div);
+
+
+        // Event
+        let btn = document.querySelector('.btn');
+        btn.addEventListener('click', function () {
+            alert('Mouse Clicked');
+        });
+
+        let clickEvent = new Event('click');
+        btn.dispatchEvent(clickEvent);
+
+
+    </script>
+</body>
+
+</html>
